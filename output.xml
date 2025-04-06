@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.12.5 on win32)" generated="2025-04-06T17:03:39.122978" rpa="false" schemaversion="5">
+<suite id="s1" name="Email Reply Test" source="C:\Users\TR\Desktop\Email AI Agent\email_assistant\tests\email_reply_test.robot">
+<test id="s1-t1" name="Draft And Send Email Reply" line="9">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-06T17:03:41.128436" level="INFO">Fetching latest email from goyal11.gopal@gmail.com</msg>
+<arg>Fetching latest email from ${SENDER_EMAIL}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-06T17:03:41.127933" elapsed="0.000503"/>
+</kw>
+<kw name="Get Email Content From Sender" owner="email_bot.EmailBot">
+<msg time="2025-04-06T17:03:43.392649" level="INFO">No emails found from: goyal11.gopal@gmail.com</msg>
+<msg time="2025-04-06T17:03:43.392649" level="INFO">${content} = This is a test content</msg>
+<var>${content}</var>
+<arg>${SENDER_EMAIL}</arg>
+<status status="PASS" start="2025-04-06T17:03:41.130451" elapsed="2.262198"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2025-04-06T17:03:43.393557" level="INFO">Length is 22.</msg>
+<arg>${content}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2025-04-06T17:03:43.393557" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-06T17:03:43.393557" level="INFO">Drafting reply using OpenAI</msg>
+<arg>Drafting reply using OpenAI</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-06T17:03:43.393557" elapsed="0.000000"/>
+</kw>
+<kw name="Draft Email Reply" owner="email_bot.EmailBot">
+<msg time="2025-04-06T17:03:45.015920" level="INFO">HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"</msg>
+<msg time="2025-04-06T17:03:45.021500" level="INFO">${reply} = Here is a draft reply to the email:
+
+Dear [Recipient],
+
+Thank you for reaching out. I appreciate you taking the time to share your test content with me. I'm looking forward to our next communication.
+...</msg>
+<var>${reply}</var>
+<arg>${content}</arg>
+<status status="PASS" start="2025-04-06T17:03:43.394480" elapsed="1.627020"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-06T17:03:45.022484" level="INFO">Sending reply: Here is a draft reply to the email:
+
+Dear [Recipient],
+
+Thank you for reaching out. I appreciate you taking the time to share your test content with me. I'm looking forward to our next communication.
+
+Best regards,
+[Your Name]</msg>
+<arg>Sending reply: ${reply}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-06T17:03:45.021500" elapsed="0.000984"/>
+</kw>
+<kw name="Send Email Reply" owner="email_bot.EmailBot">
+<arg>${SENDER_EMAIL}</arg>
+<arg>${SUBJECT}</arg>
+<arg>${reply}</arg>
+<status status="PASS" start="2025-04-06T17:03:45.022484" elapsed="3.302306"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-04-06T17:03:48.327792" level="INFO">Email reply sent successfully!</msg>
+<arg>Email reply sent successfully!</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-04-06T17:03:48.326799" elapsed="0.000993"/>
+</kw>
+<status status="PASS" start="2025-04-06T17:03:41.125933" elapsed="7.203304"/>
+</test>
+<status status="PASS" start="2025-04-06T17:03:39.125353" elapsed="9.204891"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Email Reply Test" id="s1" pass="1" fail="0" skip="0">Email Reply Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

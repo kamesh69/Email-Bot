@@ -1,0 +1,4 @@
+venv
+.e
+email_bot/__pycache__
+email_bot/config.py
